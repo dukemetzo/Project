@@ -1,1 +1,1 @@
-![Entity Relationship Diagram](EntityRelationshipDiagram.jpeg)
+![Entity Relationship Diagram](EntityRelationshipDiagram.jpg)
