@@ -14,10 +14,19 @@ router
         }
     })
 
-    .get('/load', async (req, res) => {
+    .post('/load', async (req, res) => {
         try {
             const comment = await Comment.loadComment(req.body.commentId);
             res.send({...comment});
+        } catch(error) {
+            res.status(401).send({ message: error.message });
+        }
+    })
+
+    .post('/getAll', async (req, res) => {
+        try {
+            const comments = await Comment.getAllComments(req.body.userId);
+            res.send({...comments});
         } catch(error) {
             res.status(401).send({ message: error.message });
         }

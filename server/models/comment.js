@@ -32,6 +32,14 @@ async function loadComment(commentId) {
     return comment;
 }
 
+// READ ALL comments
+async function getAllComments(userId) {
+    const comments = await Comment.find({"userId": userId});
+    if(!comments) throw Error("No comments found");
+
+    return comments;
+}
+
 // UPDATE
 async function likeComment(commentId) {
     const comment = await Comment.findById({"_id": commentId});
@@ -49,5 +57,5 @@ async function deleteComment(commentId) {
 
 // 5. export all functions we want to access in route files
 module.exports = {
-    createComment, loadComment, likeComment, deleteComment
+    createComment, loadComment, getAllComments, likeComment, deleteComment
 };

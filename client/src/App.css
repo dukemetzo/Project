@@ -1,3 +1,15 @@
+ul li {
+  background: rgb(111, 110, 113);
+  margin: 20px;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  background:  #1e2026;
+  padding: 20px;
+}
+
 body {
   padding: 100px;
   background-color: #2c2e35;

@@ -30,6 +30,14 @@ async function readPost(postId) {
     return post;
 }
 
+// READ ALL posts
+async function getAllPosts(userId) {
+    const posts = await Post.find({"userId": userId});
+    if(!posts) throw Error("No posts found");
+
+    return posts;
+}
+
 // UPDATE
 async function likePost(postId) {
     const post = await Post.findById({"_id": postId});
@@ -47,5 +55,5 @@ async function deletePost(postId) {
 
 // 5. export all functions we want to access in route files
 module.exports = {  
-    createPost, readPost, likePost, deletePost
+    createPost, readPost, getAllPosts, likePost, deletePost
 };

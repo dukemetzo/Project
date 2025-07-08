@@ -14,10 +14,19 @@ router
         }
     })
 
-    .get('/read', async (req, res) => {
+    .post('/read', async (req, res) => {
         try {
             const post = await Post.readPost(req.body.postId);
             res.send({...post});
+        } catch(error) {
+            res.status(401).send({ message: error.message });
+        }
+    })
+
+    .post('/getAll', async (req, res) => {
+        try {
+            const posts = await Post.getAllPosts(req.body.userId);
+            res.send({...posts});
         } catch(error) {
             res.status(401).send({ message: error.message });
         }
