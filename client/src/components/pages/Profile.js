@@ -50,6 +50,24 @@ const Profile = () => {
     });
   };
 
+  const deletePost = (e) => {
+    var id = posts.at(posts.length - 1)._id;
+
+    fetchData("/post/delete",
+    {
+      "postId": id
+    },
+    "DELETE")
+    .then((data) => {
+      if(!data.message) {
+        setPosts(posts.slice(0, -1));
+      }
+    })
+    .catch((error) => {
+      console.log(`Error! ${error.message}`)
+    });
+  };
+
   return (
     <div className="container-md">
       <div className="container-sm">
@@ -73,12 +91,24 @@ const Profile = () => {
         {posts && posts.length > 0 && (
           <ul>
             {posts.map((post) => (
-              <li key={parseInt(post._id)}>
+              <li key={post._id}>
                 {post.postContent} | post Likes: {post.postLikes}
               </li>
             ))}
           </ul>
         )}
+      <label htmlFor="deletePost" className="aria-label">Delete last post</label>
+      <div className="container-sm">
+        <button
+        type="button"
+        className="btn btn-danger"
+        id="deletePost"
+        name='deletePost'
+        onClick={deletePost}
+      >
+        Delete
+      </button>
+      </div>
     </div>
   );
 }
